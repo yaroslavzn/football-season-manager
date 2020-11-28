@@ -21,4 +21,4 @@ export class Match extends Document {
   date: Date;
 }
 
-export const MatchSchema = SchemaFactory.createForClass(Match);
+export const MatchSchema = SchemaFactory.createForClass(Match).index({home_team: 1, away_team: 1}, {unique: 1});
