@@ -14,6 +14,7 @@ import { DataFillModule } from './data-fill/data-fill.module';
       inject: [ConfigService],
       useFactory: async (configService: ConfigService) => ({
         uri: configService.get<string>('MONGODB_URI'),
+        useCreateIndex: true
       })
     }),
     MatchesModule,
