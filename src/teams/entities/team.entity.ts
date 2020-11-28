@@ -9,4 +9,4 @@ export class Team {
   name: string;
 }
 
-export const TeamSchema =  SchemaFactory.createForClass(Team);
+export const TeamSchema =  SchemaFactory.createForClass(Team).index({name: 1}, {unique: true});
