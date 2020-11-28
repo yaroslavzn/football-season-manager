@@ -13,9 +13,21 @@ export class MatchesService {
 
   find(date?: string, teams?: string[]): Promise<MatchDocument[]> {
     const query = this.matchModel.find();
+    teams = teams && teams.filter(data => !!data);
 
-    if (teams) {
+    if (teams && teams.length === 1) {
       query.or([
+        {
+          home_team: teams[0]
+        },
+        {
+          away_team: teams[0]
+        }
+      ])
+    }
+
+    if (teams && teams.length > 1) {
+      query.and([
         {home_team: {
           $in: teams
         }},

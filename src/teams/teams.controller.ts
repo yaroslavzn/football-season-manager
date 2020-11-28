@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, NotFoundException, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, NotFoundException, Param, Patch, Post, Query } from '@nestjs/common';
 import { TeamsService } from './teams.service';
 import { CreateTeamDto } from './dto/create-team.dto';
 import { UpdateTeamDto } from './dto/update-team.dto';
@@ -22,8 +22,10 @@ export class TeamsController {
   }
 
   @Get()
-  async findMany(): Promise<TeamDocument[]> {
-    return await this.teamsService.findMany();
+  async findMany(
+    @Query('name') name?: string
+  ): Promise<TeamDocument[]> {
+    return await this.teamsService.findMany(name);
   }
 
   @Patch(':id')

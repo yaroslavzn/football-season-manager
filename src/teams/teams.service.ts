@@ -21,8 +21,14 @@ export class TeamsService {
     return team;
   }
 
-  findMany(): Promise<TeamDocument[]> {
-    return this.teamModel.find().exec();
+  findMany(name?: string): Promise<TeamDocument[]> {
+    const query = this.teamModel.find();
+
+    if (name) {
+      query.where('name', new RegExp(name, 'i'));
+    }
+
+    return query.exec();
   }
 
   create(createTeamDto: CreateTeamDto): Promise<TeamDocument> {
