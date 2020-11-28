@@ -3,6 +3,7 @@ import { TeamsModule } from './teams/teams.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { MatchesModule } from './matches/matches.module';
+import { DataFillModule } from './data-fill/data-fill.module';
 
 @Module({
   imports: [
@@ -15,7 +16,8 @@ import { MatchesModule } from './matches/matches.module';
         uri: configService.get<string>('MONGODB_URI'),
       })
     }),
-    MatchesModule
+    MatchesModule,
+    DataFillModule
   ],
   controllers: [],
   providers: [],
